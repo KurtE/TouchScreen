@@ -8,13 +8,17 @@
 #include <stdint.h>
 
 
-#if defined(__AVR_ATmega328P__) || defined(__AVR_ATmega32U4__) || defined(TEENSYDUINO)
+#if defined(__AVR_ATmega328P__) || defined(__AVR_ATmega32U4__) || defined(TEENSYDUINO) || defined(__AVR_ATmega2560__)
+#if defined(__IMXRT1052__) || defined(__IMXRT1062__)
+typedef volatile uint32_t RwReg;
+#else
 typedef volatile uint8_t RwReg;
+#endif
 #endif
 #if defined(ARDUINO_STM32_FEATHER)
 typedef volatile uint32 RwReg;
 #endif
-#if defined(ARDUINO_FEATHER52)
+#if defined(ARDUINO_FEATHER52) || defined(ESP32)
 typedef volatile uint32_t RwReg;
 #endif
 
